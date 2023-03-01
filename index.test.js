@@ -1,6 +1,7 @@
 const {sequelize} = require('./db');
 const {Band, Musician} = require('./index')
 
+
 describe('Band and Musician Models', () => {
     /**
      * Runs the code prior to all tests
@@ -54,5 +55,12 @@ describe('Band and Musician Models', () => {
             BandId: 2
         });
         expect(alvin.BandId).toBe(2);
+    })
+
+    test("add multiple musicians to band", async() =>{
+        const newBand = await Band.create({
+            name: "Rock",
+            instrument: "drums"
+        })
     })
 })

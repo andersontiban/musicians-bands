@@ -1,17 +1,17 @@
 const {Band} = require('./Band')
 const {Musician} = require('./Musician')
+const {Songs} = require("./Songs")
 //associating the two models
 
 Band.hasMany(Musician)
 Musician.hasOne(Band)
 
-const musician1 = Musician.findByPk(1)
-
-const someBand = Band.findByPk(1);
-
+Songs.belongsToMany(Musician, {through: "Musicians_Songs"});
+Musician.belongsToMany(Songs, {through: "Musicians_Songs"});
 
 
 module.exports = {
     Band,
-    Musician
+    Musician,
+    Songs
 };
