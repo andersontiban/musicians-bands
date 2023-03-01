@@ -1,5 +1,5 @@
 const {sequelize} = require('./db');
-const {Band, Musician} = require('./index')
+const {Band, Musician, Songs} = require('./index')
 
 
 describe('Band and Musician Models', () => {
@@ -62,5 +62,27 @@ describe('Band and Musician Models', () => {
             name: "Rock",
             instrument: "drums"
         })
+        const newSong = await Songs.create({
+            title: "Good vibes",
+            year: 2016
+        })
+        const newSong2 = await Songs.create({
+            title: "Ocean",
+            year: 1968
+        })
+        expect()
+    })
+    test("Eager load data", async() => {
+        const allBands = Band.findAll({
+            include: [
+                {model: Musician, as: "BandMusicians"}
+            ]
+        })
+        const allSongs = Band.findAll({
+            include: [
+                {model : Songs, as : "BandSongs"}
+            ]
+        })
+        expect(allBands.id).toBe();
     })
 })
