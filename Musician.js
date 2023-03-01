@@ -6,6 +6,12 @@ let Musician = sequelize.define("Musician", {
     genre: Sequelize.STRING
 })
 
+const simon =  Musician.create({
+    name: "Simon",
+    genre: "pop",
+    BandId: 2
+})
+
 module.exports = {
     Musician
 };

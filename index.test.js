@@ -18,6 +18,14 @@ describe('Band and Musician Models', () => {
             name: "The Beatles",
             instrument: "guitar"
         }) 
+        const testBand2 = await Band.create({
+            name: "Alvin and the Chicmunks",
+            instrument: "voice"
+        })
+        const testBand3 = await Band.create({
+            name: "Jazz Band",
+            instrument: "trumpet"
+        })  
 
         expect(testBand.name).toBe('The Beatles');
     })
@@ -26,8 +34,25 @@ describe('Band and Musician Models', () => {
         // TODO - test creating a musician
         const testMusician = await Musician.create({
             name: "Bruno Mars",
-            genre: "Everything"
-        })
+            genre: "Everything",
+            BandId: 1
+        });
+        
         expect(testMusician.name).toBe('Bruno Mars');
+    })
+
+    //add multiple musicians to a band
+    test("add multiple musicians to band", async () => {
+        const alvin = await Musician.create({
+            name: "Alvin",
+            genre: "pop",
+            BandId: 2
+        });
+        const simon = await Musician.create({
+            name: "Simon",
+            genre: "pop",
+            BandId: 2
+        });
+        expect(alvin.BandId).toBe(2);
     })
 })
